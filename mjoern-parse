@@ -1,0 +1,34 @@
+#!/bin/bash
+outformat="csv"
+outdir="parsed"
+BASEDIR=""
+
+# Parse the named arguments
+while [[ $# -gt 0 ]]; do
+    key="$1"
+    case $key in
+        -outformat|--outformat)
+            outformat="$2"
+            shift # past argument
+            shift # past value
+            ;;
+        -outdir|--outdir)
+            outdir="$2"
+            shift # past argument
+            shift # past value
+            ;;
+        -basedir|--basedir)
+            BASEDIR=$(dirname "$0")
+            shift # past argument
+            shift # past value
+            ;;
+        *)  # unknown option
+            echo "Unknown option: $key"
+            shift
+            ;;
+    esac
+done
+
+
+
+java -cp "$BASEDIR/projects/extensions/joern-fuzzyc/build/libs/joern-fuzzyc.jar:$BASEDIR/projects/extensions/jpanlib/build/libs/jpanlib.jar:$BASEDIR/projects/octopus/lib/*" tools.parser.ParserMain -outformat $outformat -outdir $outdir $@
