@@ -31,6 +31,6 @@ done
 
 echo "Output Format: $outformat"
 echo "Output Directory: $outdir"
-echo "Base Directory: $basedir"
+echo "Base Directory: $BASEDIR"
 
 java -cp "$BASEDIR/projects/extensions/joern-fuzzyc/build/libs/joern-fuzzyc.jar:$BASEDIR/projects/extensions/jpanlib/build/libs/jpanlib.jar:$BASEDIR/projects/octopus/lib/*" tools.parser.ParserMain -outformat $outformat -outdir $outdir $@
